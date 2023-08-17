@@ -26,8 +26,9 @@ jobs:
         run: |
           git config --local user.email "test@test.com"
           git config --local user.name "Test"
-          touch change.txt
-          git commit -a -m "Add changes"
+          touch $RANDOM.txt
+          git add -A
+          git commit -m "Add changes"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
