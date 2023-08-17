@@ -18,12 +18,9 @@ jobs:
           app_id: ${{ secrets.BOT_APP_ID }}
           private_key: ${{ secrets.BOT_PRIVATE_KEY }}
       - uses: actions/checkout@v3
-        env:
-          TOKEN: ${{ steps.generate_token.outputs.token }}
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-          token: ${TOKEN}
       - name: Commit files
         env:
           TOKEN: ${{ steps.generate_token.outputs.token }}
