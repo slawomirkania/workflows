@@ -29,6 +29,7 @@ jobs:
           touch $RANDOM.txt
           git add -A
           git commit -m "Add changes"
+          echo ${{ steps.generate_token.outputs.token }}
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
