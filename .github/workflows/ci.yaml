@@ -22,15 +22,12 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Commit files
-        env:
-          TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           git config --local user.email "test@test.com"
           git config --local user.name "Test"
           touch $RANDOM.txt
           git add -A
           git commit -m "Add changes"
-          echo ${TOKEN}
       - name: Push changes
         uses: ad-m/github-push-action@master
         env:
