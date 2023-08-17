@@ -33,4 +33,4 @@ jobs:
         env:
           TOKEN: ${{ steps.generate_token.outputs.token }}
         with:
-          github_token: ${TOKEN}
+          github_token: ${{TOKEN}}
