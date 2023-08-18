@@ -22,7 +22,9 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: dump github context
-        run: echo '${{ toJSON(github.event) }}' | jq
+        run: |
+          echo '${{ toJSON(github.event) }}' | jq
+          echo '${{ toJSON(steps) }}' | jq
         shell: bash
 #      - name: Commit files
 #        run: |
