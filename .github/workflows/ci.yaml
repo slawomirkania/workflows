@@ -21,14 +21,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Commit files
-        run: |
-          git config --local user.email "test@test.com"
-          git config --local user.name "Test"
-          touch $RANDOM.txt
-          git add -A
-          git commit -m "Add changes"
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ steps.generate_token.outputs.token }}
+      - name: dump github context
+        run: echo '${{ toJSON(github.event }}' | jq
+        shell: bash
+#      - name: Commit files
+#        run: |
+#          git config --local user.email "test@test.com"
+#          git config --local user.name "Test"
+#          touch $RANDOM.txt
+#          git add -A
+#          git commit -m "Add changes"
+#      - name: Push changes
+#        uses: ad-m/github-push-action@v0.6.0
+#        with:
+#          github_token: ${{ steps.generate_token.outputs.token }}
