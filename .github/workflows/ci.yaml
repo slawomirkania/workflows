@@ -1,11 +1,7 @@
 name: CI
 on:
-  workflow_dispatch:
   pull_request:
-    types: [ opened, synchronize, reopened ]
-  push:
-    branches:
-      - main
+    types: [ opened, synchronize, ready_for_review, reopened ]
 
 jobs:
   ci:

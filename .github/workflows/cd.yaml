@@ -1,12 +1,11 @@
 name: CD
 on:
-  workflow_run:
-    workflows: [ci]
-    types: [completed]
-    branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
-  cd:
+  commitCheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,4 +13,15 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Echo
-        run: echo CD
+        run: echo commitCheck
+  release:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    needs: commitCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Echo
+        run: echo release
