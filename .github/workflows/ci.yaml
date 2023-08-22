@@ -14,9 +14,13 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Echo
-        run: echo tests
+        run: | 
+          echo tests
+          echo '${{ toJSON(github) }}' | jq
+          echo '${{ toJSON(github.event) }}' | jq
+          echo '${{ toJSON(github.event.pull_request) }}' | jq
   release:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
     needs: tests
     runs-on: ubuntu-latest
     steps:
