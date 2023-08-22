@@ -16,9 +16,9 @@ jobs:
       - name: Echo
         run: | 
           echo tests
-          echo ${{toJSON(github)}}
-          echo ${{toJSON(github.event)}}
-          echo ${{toJSON(github.event.pull_request)}}
+          echo '${{ toJSON(github) }}' | jq
+          echo '${{ toJSON(github.event) }}' | jq
+          echo '${{ toJSON(github.event.pull_request) }}' | jq
   release:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: tests
