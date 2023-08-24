@@ -1,8 +1,9 @@
-name: CI/CD
+name: release
 on:
-  pull_request:
-    types: [ opened, synchronize, ready_for_review, reopened ]
+  workflow_dispatch:
   push:
+    paths-ignore:
+      - "version.sbt"
     branches:
       - main
 jobs:
@@ -16,11 +17,7 @@ jobs:
       - name: Echo
         run: | 
           echo tests
-          echo '${{ toJSON(github) }}' | jq
-          echo '${{ toJSON(github.event) }}' | jq
-          echo '${{ toJSON(github.event.pull_request) }}' | jq
   release:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
     needs: tests
     runs-on: ubuntu-latest
     steps:
