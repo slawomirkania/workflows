@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
   push:
     paths-ignore:
+      - ".github/**"
+      - "README.md"
       - "version.sbt"
     branches:
       - main
