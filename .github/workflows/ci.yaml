@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
       - name: Echo
         run: | 
-          echo tests2
+          echo tests2 1
   release:
     needs: tests
     runs-on: ubuntu-latest
