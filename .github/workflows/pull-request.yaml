@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Runt tests
-        run: echo 1
+        run: sleep 5
