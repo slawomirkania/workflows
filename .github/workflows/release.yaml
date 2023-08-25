@@ -29,4 +29,4 @@ jobs:
           git add $featureName
           git commit -m "New feature $featureName"
           git tag $featureName
-          git push && git push --tags
+          git push --force && git push --force --tags
