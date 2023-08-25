@@ -14,11 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Runt tests
-        run: echo 1
+        run: sleep 5
   release:
     needs: tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Release
-        run: echo 2
+        run: |
+          featureName=$RANDOM
+          touch $featureName
+          git add $featureName
+          git commit -m "New feature $featureName"
+          git tag $featureName
+          git push && git push --tags
