@@ -24,14 +24,18 @@ jobs:
         run: |
           git config --local user.email "slawomir.kania1@gmail.com"
           git config --local user.name "Slawomir Kania"
-          featureName=$RANDOM
-          touch $featureName
-          git add $featureName
-          git commit -m "New feature $featureName"
-          git tag $featureName
-      - name: Push to protected branch
+          version=$RANDOM
+          echo $version > version.sbt
+          git add -A
+          git commit -m "New version version"
+          git tag $version
+      - name: Push commit to protected branch
         uses: CasperWA/push-protected@v2
         with:
           token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
           branch: main
           unprotect_reviews: true
+          debug: true
+      - uses: actions/checkout@v3
+      - name: Push tag
+        run: git push --tags
