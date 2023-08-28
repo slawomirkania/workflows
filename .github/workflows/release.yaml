@@ -36,5 +36,5 @@ jobs:
           branch: main
           unprotect_reviews: true
           debug: true
-      - name: Push tag
-        run: git push --tags
+          tags: true
+
