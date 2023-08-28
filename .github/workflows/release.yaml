@@ -27,7 +27,7 @@ jobs:
           version=$RANDOM
           echo $version > version.sbt
           git add -A
-          git commit -m "New version version"
+          git commit -m "New version $version"
           git tag $version
       - name: Push commit to protected branch
         uses: CasperWA/push-protected@v2
@@ -36,6 +36,5 @@ jobs:
           branch: main
           unprotect_reviews: true
           debug: true
-      - uses: actions/checkout@v3
       - name: Push tag
         run: git push --tags
