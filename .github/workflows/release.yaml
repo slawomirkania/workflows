@@ -29,4 +29,9 @@ jobs:
           git add $featureName
           git commit -m "New feature $featureName"
           git tag $featureName
-          git push --force && git push --force --tags
+      - name: Push to protected branch
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
+          branch: main
+          unprotect_reviews: true
