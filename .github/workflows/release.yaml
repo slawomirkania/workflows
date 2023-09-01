@@ -30,8 +30,8 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
       - name: Release
         run: |
-          git config --local user.email "example@github.com"
-          git config --local user.name "Example"
+          git config --local user.name "Your Name Here"
+          git config --local user.email your@email.example
           version=$RANDOM
           echo $version > version.sbt
           git add -A
