@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - rulesets-flow
     paths-ignore:
       - ".github/**"
       - "README.md"
@@ -21,8 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
       - name: Release
         run: |
           git config --local user.email "slawomir.kania1@gmail.com"
