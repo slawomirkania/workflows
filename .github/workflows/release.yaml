@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - rulesets-flow
     paths-ignore:
       - ".github/**"
       - "README.md"
@@ -20,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
       - name: Release
         run: |
           git config --local user.email "slawomir.kania1@gmail.com"
@@ -29,12 +32,4 @@ jobs:
           git add -A
           git commit -m "New version $version"
           git tag $version
-      - name: Push commit to protected branch
-        uses: CasperWA/push-protected@v2
-        with:
-          token: ${{ secrets.PUSH_TO_PROTECTED_BRANCH }}
-          branch: main
-          unprotect_reviews: true
-          debug: true
-          tags: true
-
+          git push & git push --tags
